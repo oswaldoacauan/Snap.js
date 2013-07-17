@@ -71,7 +71,7 @@
                 },
                 remove: function(el, name){
                     if(settings.addBodyClasses){
-                        el.className = (el.className).replace(" "+name, "");
+                        el.className = (el.className).replace(name, "");
                     }
                 }
             },
@@ -189,7 +189,7 @@
                         utils.klass.remove(doc.body, 'snapjs-right');
                         utils.klass.remove(doc.body, 'snapjs-left');
                     }
-
+                    utils.klass.remove(doc.body, 'snapjs-animating');
                     utils.dispatchEvent('animated');
                     utils.events.removeEvent(settings.element, utils.transitionCallback(), action.translate.easeCallback);
                 },
@@ -205,6 +205,7 @@
                         settings.element.style[cache.vendor+'Transition'] = 'all ' + settings.transitionSpeed + 's ' + settings.easing;
 
                         cache.animatingInterval = setInterval(function() {
+                            utils.klass.add(doc.body, 'snapjs-animating');
                             utils.dispatchEvent('animating');
                         }, 1);
                         
