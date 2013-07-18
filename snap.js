@@ -203,9 +203,10 @@
                         cache.easingTo = n;
 
                         settings.element.style[cache.vendor+'Transition'] = 'all ' + settings.transitionSpeed + 's ' + settings.easing;
-
+                        
+                        utils.klass.add(doc.body, 'snapjs-animating');
+                        
                         cache.animatingInterval = setInterval(function() {
-                            utils.klass.add(doc.body, 'snapjs-animating');
                             utils.dispatchEvent('animating');
                         }, 1);
                         
